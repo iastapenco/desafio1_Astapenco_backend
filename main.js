@@ -4,12 +4,16 @@ class ProductManager {
   }
 
   addProduct(product) {
-    const prod = this.products.find((prod) => prod.code === product.code);
+    if (Object.values(product).every((values) => values !== undefined)) {
+      const prod = this.products.find((prod) => prod.code === product.code);
 
-    if (prod) {
-      console.log("Producto ya encontrado");
+      if (prod) {
+        console.log("Producto ya encontrado");
+      } else {
+        this.products.push(product);
+      }
     } else {
-      this.products.push(product);
+      console.log("Hay un error en el producto");
     }
   }
 
